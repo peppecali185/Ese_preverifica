@@ -18,39 +18,44 @@ public class Ese_statistiche {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         // TODO code application logic here
         java.io.BufferedReader console = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
         Scanner input = new Scanner(System.in);
+        
         boolean finito = false;
+        int tempo;
         datiCondivisi d = new datiCondivisi();
-        Th1 th1 = new Th1(d);
+        
+        System.out.println("quanti caratteri devo generare?");
+        tempo= input.nextInt();
+        
+        Th1 th1 = new Th1(d,tempo);
+        Th2 th2=new Th2(d);
+        Th3 th3=new Th3(d);
 
         th1.start();
-
-        while (!finito) {
-            d.visualizza();
-            String s = console.readLine();
-            if (s.endsWith(" ")) {
-                finito = true;
-            } else {
-                clearConsole();
-            }
-        }
-        
+        th1.join();
         th1.interrupt();
-
+        
+        th2.start();
+        th3.start();
+        
+        th2.join();
+        th3.join();
+        
+        th2.interrupt();
+        th3.interrupt();
+        
+        System.out.println("il numero di spazi inseriti e': "+d.getNumSpaziInseriti());
+        System.out.println("------------------");
+        System.out.println("il numero di spazi letti e': "+d.getNumSpaziLetti());
+        System.out.println("------------------");
+        System.out.println("il numero di punti inseriti e': "+d.getNumPuntiInseriti());
+        System.out.println("------------------");
+        System.out.println("il numero di punti letti e': "+d.getNumPuntiLetti());
     }
 
-    private static void clearConsole() {
-        try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                Runtime.getRuntime().exec("clear");
-            }
-        } catch (IOException | InterruptedException ex) {
-        }
-    }
+    
 
 }

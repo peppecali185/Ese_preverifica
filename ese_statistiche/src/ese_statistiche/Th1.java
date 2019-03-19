@@ -6,6 +6,8 @@
 package ese_statistiche;
 
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,12 +17,15 @@ public class Th1 extends Thread {
 
     private String sequenza;
     private int SIZE;
-    private datiCondivisi g=new datiCondivisi();
+    private int tempo;
+    private datiCondivisi g;
+    
 
-    public Th1(datiCondivisi d) {
+    public Th1(datiCondivisi d,int tempo) {
         sequenza = "abcdefghijklmnoprstuvwxyz .,";
         SIZE = sequenza.length();
         g=d;
+        this.tempo=tempo;
     }
     public Th1() {
         sequenza = "abcdefghijklmnoprstuvwxyz .,";
@@ -30,9 +35,18 @@ public class Th1 extends Thread {
     @Override
     public void run() {
         Random r = new Random();
-        while (true) {
+        int i=0;
+        while (i<tempo) {
             char t = sequenza.charAt(r.nextInt(SIZE));
+            System.out.println(t);
+            if(t==' '){
+                g.incrementaSpaziInseriti();
+            }
+            if(t=='.'){
+                g.incrementaPuntiInseriti();
+            }
             g.inserisci(t);
+            i++;
         }
     }
 
