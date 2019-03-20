@@ -35,17 +35,15 @@ public class Ese_statistiche {
         Th3 th3=new Th3(d);
 
         th1.start();
-        th1.join();
-        th1.interrupt();
-        
         th2.start();
         th3.start();
         
-        th2.join();
-        th3.join();
+        th1.join();
+
         
         th2.interrupt();
         th3.interrupt();
+        th1.interrupt();
         
         System.out.println("il numero di spazi inseriti e': "+d.getNumSpaziInseriti());
         System.out.println("------------------");

@@ -5,27 +5,50 @@
  */
 package ese_statistiche;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author peppe
  */
-public class Th2 extends Thread{
-    
-   private datiCondivisi g;
-    
+public class Th2 extends Thread {
+
+    private datiCondivisi g;
+
     public Th2(datiCondivisi g) {
-        this.g=g;
+        this.g = g;
     }
-    
+
     @Override
     public void run() {
-    char[] v=g.getV();
-    
-    for(int i=0;i<v.length;i++){
-        if(v[i]==' '){
-            g.incrementaSpaziLetti();
-           
+        char[] v = g.getV();
+
+        
+
+        for (int i = 0; i < v.length; i++) {
+        ///////////////////////////
+        try {
+            g.s2Wait();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Th2.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+        ///////////////////////////
+            if (v[i] == ' ') {
+                g.incrementaSpaziLetti();
+
+            }
+        ///////////////////////////    
+        try {
+            g.s3Signal();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Th2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ///////////////////////////          
+            
+        }
+
+
+
     }
 }

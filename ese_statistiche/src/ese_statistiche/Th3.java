@@ -5,6 +5,9 @@
  */
 package ese_statistiche;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author peppe
@@ -22,10 +25,23 @@ public class Th3 extends Thread{
     char[] v=g.getV();
     
     for(int i=0;i<v.length;i++){
-        if(v[i]=='.'){
-            g.incrementaPuntiLetti();
-            
+        ///////////////////////////
+        try {
+            g.s3Wait();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Th2.class.getName()).log(Level.SEVERE, null, ex);
         }
+        ///////////////////////////        
+        if(v[i]=='.'){
+            g.incrementaPuntiLetti();         
+        }
+        ///////////////////////////
+        try {
+            g.s1Signal();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Th2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ///////////////////////////
         
     }
     }
