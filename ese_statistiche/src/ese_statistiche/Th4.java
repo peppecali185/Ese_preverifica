@@ -15,17 +15,18 @@ import java.util.logging.Logger;
 public class Th4 extends Thread {
 
     private datiCondivisi d;
+    private int dimensione;
 
-    public Th4(datiCondivisi d) {
+    public Th4(datiCondivisi d, int dii) {
         this.d = d;
-
+        dimensione = dii;
     }
 
     @Override
     public void run() {
         char[] v = d.getV();
-        for (int i = 0; i < v.length; i++) {
-            
+        for (int i = 0; i < dimensione;i++) {
+
             ///////////////////////////
             try {
                 d.s4Wait();
@@ -33,7 +34,7 @@ public class Th4 extends Thread {
                 Logger.getLogger(Th4.class.getName()).log(Level.SEVERE, null, ex);
             }
             ///////////////////////////
-            
+
             for (int j = 0; j < d.getElementiPresenti(); j++) {         //per visualizzare tutto l'array
                 System.out.print(v[j] + "-");
             }
@@ -45,7 +46,7 @@ public class Th4 extends Thread {
             System.out.println("il numero di punti inseriti e': " + d.getNumPuntiInseriti());
             System.out.println("------------------");
             System.out.println("il numero di punti letti e': " + d.getNumPuntiLetti());
-            
+
             ///////////////////////////
             try {
                 d.s1Signal();
@@ -53,9 +54,14 @@ public class Th4 extends Thread {
                 Logger.getLogger(Th4.class.getName()).log(Level.SEVERE, null, ex);
             }
             ///////////////////////////
+
         }
-       
-        
-        
+
+        try {
+            d.semFINITOsignal();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Th4.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }

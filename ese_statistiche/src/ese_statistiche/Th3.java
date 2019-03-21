@@ -15,9 +15,11 @@ import java.util.logging.Logger;
 public class Th3 extends Thread{
     
      private datiCondivisi g;
+     private int dimensione;
     
-    public Th3(datiCondivisi g) {
+    public Th3(datiCondivisi g,int d) {
         this.g=g;
+        dimensione=d;
     }
     
     @Override

@@ -14,7 +14,7 @@ import java.util.concurrent.Semaphore;
 public class datiCondivisi {
 
     private char[] v = new char[100000];
-    private Semaphore s1,s2,s3,s4;
+    private Semaphore s1,s2,s3,s4,semFINITO;
     
     private int elementiPresenti, numSpaziInseriti, numPuntiInseriti, numSpaziLetti, numPuntiLetti;
 
@@ -28,6 +28,7 @@ public class datiCondivisi {
         s2=new Semaphore(0);
         s3=new Semaphore(0);    
         s4=new Semaphore(0);
+        semFINITO=new Semaphore(0);
     }
     
     
@@ -43,6 +44,9 @@ public class datiCondivisi {
     public void s4Wait() throws InterruptedException{
         s4.acquire();
     }
+    public void semFINITOwait() throws InterruptedException{
+        semFINITO.acquire();
+    }
     public void s1Signal() throws InterruptedException{
         s1.release();
     }
@@ -54,6 +58,9 @@ public class datiCondivisi {
     }
     public void s4Signal() throws InterruptedException{
         s4.release();
+    }
+    public void semFINITOsignal() throws InterruptedException{
+        semFINITO.release();
     }
 
     public synchronized char[] getV() {
