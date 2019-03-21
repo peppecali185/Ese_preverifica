@@ -37,7 +37,7 @@ public class Th3 extends Thread{
         }
         ///////////////////////////
         try {
-            g.s1Signal();
+            g.s4Signal();
         } catch (InterruptedException ex) {
             Logger.getLogger(Th2.class.getName()).log(Level.SEVERE, null, ex);
         }

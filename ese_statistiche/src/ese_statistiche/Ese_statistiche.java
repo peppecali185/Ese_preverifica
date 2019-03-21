@@ -33,25 +33,21 @@ public class Ese_statistiche {
         Th1 th1 = new Th1(d,tempo);
         Th2 th2=new Th2(d);
         Th3 th3=new Th3(d);
+        Th4 th4=new Th4(d);
 
         th1.start();
         th2.start();
         th3.start();
+        th4.start();
         
-        th1.join();
-
         
-        th2.interrupt();
-        th3.interrupt();
-        th1.interrupt();
-        
-        System.out.println("il numero di spazi inseriti e': "+d.getNumSpaziInseriti());
+       /* System.out.println("il numero di spazi inseriti e': "+d.getNumSpaziInseriti());
         System.out.println("------------------");
         System.out.println("il numero di spazi letti e': "+d.getNumSpaziLetti());
         System.out.println("------------------");
         System.out.println("il numero di punti inseriti e': "+d.getNumPuntiInseriti());
         System.out.println("------------------");
-        System.out.println("il numero di punti letti e': "+d.getNumPuntiLetti());
+        System.out.println("il numero di punti letti e': "+d.getNumPuntiLetti());*/
     }
 
     

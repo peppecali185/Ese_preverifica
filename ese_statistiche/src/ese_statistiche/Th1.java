@@ -47,7 +47,6 @@ public class Th1 extends Thread {
             //////////////////////////
 
             char t = sequenza.charAt(r.nextInt(SIZE));
-            System.out.println(t);
             if (t == ' ') {
                 g.incrementaSpaziInseriti();
             }
